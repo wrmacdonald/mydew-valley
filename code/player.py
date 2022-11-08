@@ -15,18 +15,26 @@ class Player(pygame.sprite.Sprite):
             'up': [],
             'left': [],
             'right': [],
+
             'down_idle': [],
             'up_idle': [],
             'left_idle': [],
             'right_idle': [],
+
             'down_water': [],
             'up_water': [],
             'left_water': [],
             'right_water': [],
+
             'down_hoe': [],
             'up_hoe': [],
             'left_hoe': [],
             'right_hoe': [],
+
+            'down_seed': [],
+            'up_seed': [],
+            'left_seed': [],
+            'right_seed': [],
         }
         self.import_from_ss()
         self.status = 'down_idle'
@@ -84,18 +92,26 @@ class Player(pygame.sprite.Sprite):
             'left': [(0, 16, 16, 16), (16, 16, 16, 16), (32, 16, 16, 16)],
             'right': [(0, 32, 16, 16), (16, 32, 16, 16), (32, 32, 16, 16)],
             'up': [(0, 48, 16, 16), (16, 48, 16, 16), (32, 48, 16, 16)],
+
             'down_idle': [(16, 0, 16, 16)],
             'up_idle': [(16, 48, 16, 16)],
             'left_idle': [(16, 16, 16, 16)],
             'right_idle': [(16, 32, 16, 16)],
+
             'down_hoe': [(0, 64, 16, 16), (16, 64, 16, 16), (32, 64, 16, 16)],
             'left_hoe': [(0, 80, 16, 16), (16, 80, 16, 16), (32, 80, 16, 16)],
             'right_hoe': [(0, 96, 16, 16), (16, 96, 16, 16), (32, 96, 16, 16)],
             'up_hoe': [(0, 112, 16, 16), (16, 112, 16, 16), (32, 112, 16, 16)],
+
             'down_water': [(0, 128, 16, 16), (16, 128, 16, 16), (32, 128, 16, 16)],
             'left_water': [(0, 144, 16, 16), (16, 144, 16, 16), (32, 144, 16, 16)],
             'right_water': [(0, 160, 16, 16), (16, 160, 16, 16), (32, 160, 16, 16)],
             'up_water': [(0, 176, 16, 16), (16, 176, 16, 16), (32, 176, 16, 16)],
+
+            'down_seed': [(0, 192, 16, 16), (16, 192, 16, 16), (32, 192, 16, 16)],
+            'left_seed': [(0, 208, 16, 16), (16, 208, 16, 16), (32, 208, 16, 16)],
+            'right_seed': [(0, 224, 16, 16), (16, 224, 16, 16), (32, 224, 16, 16)],
+            'up_seed': [(0, 240, 16, 16), (16, 240, 16, 16), (32, 240, 16, 16)],
         }
 
         for animation in self.animations.keys():
@@ -172,6 +188,10 @@ class Player(pygame.sprite.Sprite):
         # tool animation
         if self.timers['tool use'].active:
             self.status = self.status.split('_')[0] + '_' + self.selected_tool
+
+        # seed animation
+        if self.timers['seed use'].active:
+            self.status = self.status.split('_')[0] + '_seed'
 
     def update_timers(self):
         for timer in self.timers.values():
